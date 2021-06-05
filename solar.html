@@ -1,10 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<meta charset="UTF-8">
-<title>Battery and Solar Calculator</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="solar.css">
+  <head>
+  <meta charset="utf-8">
+  <title>Boat battery and solar calculator</title>
+  <meta name="description" content="Boat battery and solar calculator">
+  <meta name="author" content="Christopher Harris"
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="solar.css">
+  </head>
 <body>
 
 <h1>Boat Battery and Solar Calculator</h1>
@@ -14,23 +17,22 @@
 <form name="getSystem" action="" method="get">
   <fieldset>
     <legend>Batteries and charging system:</legend>
-    <input type="checkbox" checked="checked">Engine Alternator:<span id="alternator"></span> A 
-<input type="range" min="40" max="200" value="80" id="myAlternator"></p>
-
-    <input type="checkbox" unchecked>Solar panels: <span id="solarP"></span> W 
-<input type="range" min="20" max="600" value="200" id="mySolarPanel"></p>
-    <input type="checkbox" unchecked>Wind generator:<span id="windG"></span> W 
-<input type="range" min="100" max="600" value="150" id="myWindGen"></p>
+      <input type="checkbox" checked="checked">Engine Alternator:<span id="alternator"></span> A 
+      <input type="range" min="40" max="200" value="80" id="myAlternator"></p>
+      <input type="checkbox" unchecked>Solar panels: <span id="solarP"></span> W 
+      <input type="range" min="20" max="600" value="200" id="mySolarPanel"></p>
+      <input type="checkbox" unchecked>Wind generator:<span id="windG"></span> W 
+      <input type="range" min="100" max="600" value="150" id="myWindGen"></p>
     <p>Are there seperate house and engine start batteries?
-    <input type="radio" name="house" value="HouseYes" checked="checked"> Yes
-    <input type="radio" name="house" value="HouseNo"> No</p>
+      <input type="radio" name="house" value="HouseYes" checked="checked"> Yes
+      <input type="radio" name="house" value="HouseNo"> No</p>
     <p>Select the chemistry of the house battery:</p>
-    <input type="radio" name="chemistry" value="FLA" checked="checked"> Flooded lead-acid
-    <input type="radio" name="chemistry" value="VLRA"> Sealed lead-acid
-    <input type="radio" name="chemistry" value="GEL"> Gel
-    <input type="radio" name="chemistry" value="AGM" > AGM
+      <input type="radio" name="chemistry" value="FLA" checked="checked"> Flooded lead-acid
+      <input type="radio" name="chemistry" value="VLRA"> Sealed lead-acid
+      <input type="radio" name="chemistry" value="GEL"> Gel
+      <input type="radio" name="chemistry" value="AGM" > AGM
     <p>House battery capacity: <span id="battery"></span> Ah 
-    <input type="range" min="100" max="600" value="200" id="myRange"></p>
+      <input type="range" min="100" max="600" value="200" id="myRange"></p>
   </fieldset>
   <fieldset>
     <legend>Consumers</legend>
@@ -65,14 +67,20 @@
     </div>
     <!-- Radar, plotter, instruments, computer, fridge, heater, fans, AC, phone chargers, etc. -->
   </fieldset>
+  <!-- Output sections starts here -->
+  <fieldset>
+    <legend>Results</legend>
+    <p>Usable - Battery capacity required <span id="capacityUsable">0</span> Ah</p>
+    <!-- this will change based on battery chemistry and the required daily battery capacity -->
+    <p>Total - Battery capacity required <span id="capacityTotalBatt">0</span> Ah</p>
+    <!-- Panel capacity using rule of thumb that will keep a battery operating in its sensible range i.e 50 to 80% for a FLA -->
+    <p>Solar Panel capacity required: <span id="panelout"></span> W</p>
+  </fieldset>
 </form>
-<!-- Output sections starts here -->
-<h2>Results</h2>
-<p>Panel capacity required: <span id="panelout">400</span> W</p>
-
+<!-- Call script -->
 <script src="solar.js"></script>
 
-<rgefooter>
+<footer>
   <hr></hr>
   <p>&#127279; Christopher Harris - 2021</p>
 </footer>
