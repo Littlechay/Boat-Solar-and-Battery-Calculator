@@ -1,1 +1,2 @@
 # Boat-Solar-and-Battery-Calculator
+A stand-alone webpage that is designed to provide an interactive, and itterative, way to design or verify a DC electrical system for a liesure boat. From information on the consumers provided it will calculate the necessary battery capacity and solar panal output required to maintain the batteries. The main inputs are available as sliders so that affect of changes in any one system can be observed. 
