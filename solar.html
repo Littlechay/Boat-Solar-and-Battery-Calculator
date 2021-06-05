@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Battery and Solar Calculator</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="solar.css">
+<body>
+
+<h1>Boat Battery and Solar Calculator</h1>
+<p>If you are trying to assess the DC electrical system on your boat this page can help you get into the 'ballpark' in terms of battery capacity required, charging capacity and such like. To use it you will fill in some basic details of the system that you have (or want). After that you need to complete the form labelled "Consumers". This will require quite a bit of research if you want to be totally accurate but the defaults should be close enough for an initial pass. Finally you fill in the details of the power generation systems that you have aboard.</p>
+<p>The "Results" section will provide an estimate of daily Ah consumption, an estimate of total battery capacity based on the battery chemistry selected and the amount of power generation required from each source listed, compared with what you now have.</p>
+<h2>Initial configuration</h2>
+<form name="getSystem" action="" method="get">
+  <fieldset>
+    <legend>Batteries and charging system:</legend>
+    <input type="checkbox" checked="checked">Engine Alternator:<span id="alternator"></span> A 
+<input type="range" min="40" max="200" value="80" id="myAlternator"></p>
+
+    <input type="checkbox" unchecked>Solar panels: <span id="solarP"></span> W 
+<input type="range" min="20" max="600" value="200" id="mySolarPanel"></p>
+    <input type="checkbox" unchecked>Wind generator:<span id="windG"></span> W 
+<input type="range" min="100" max="600" value="150" id="myWindGen"></p>
+    <p>Are there seperate house and engine start batteries?
+    <input type="radio" name="house" value="HouseYes" checked="checked"> Yes
+    <input type="radio" name="house" value="HouseNo"> No</p>
+    <p>Select the chemistry of the house battery:</p>
+    <input type="radio" name="chemistry" value="FLA" checked="checked"> Flooded lead-acid
+    <input type="radio" name="chemistry" value="VLRA"> Sealed lead-acid
+    <input type="radio" name="chemistry" value="GEL"> Gel
+    <input type="radio" name="chemistry" value="AGM" > AGM
+    <p>House battery capacity: <span id="battery"></span> Ah 
+    <input type="range" min="100" max="600" value="200" id="myRange"></p>
+  </fieldset>
+  <fieldset>
+    <legend>Consumers</legend>
+    <div class="form-row">
+      <input name="consumers" type="number" id="lightsSmall" value="4">
+      <label for="lightsSmall">Lights - house (Small):</label>
+    <div>
+    <div class="form-row">
+      <input name="consumers" type="number" id="lightsLarge" value="2">
+      <label for="lightsLarge">Lights - house (large):</label>
+    <div>
+
+    <div class="form-row">
+      <input type="checkbox" name="consumers" id="anchorLight" checked="checked">
+      <label for="anchorLight">Anchor light</label>
+    </div>
+    <div class="form-row">
+      <input type="checkbox" name="consumers" id="deckLight"> 
+      <label for="deckLight">Deck light</label>
+    </div>
+    <div class="form-row">
+      <input type="checkbox" name="consumers" id="tricolour" checked="checked">
+      <label for="tricolour">Tricolour light</label>
+    </div>
+    <div class="form-row">
+      <input type="checkbox" name="consumers" id="gasAlarm" checked="checked">
+      <label for="gasAlarm">Gas Alarm</label>
+    </div>
+    <div class="form-row">
+      <input type="checkbox" name="consumers" id="steamingLights">
+      <label for="steamingLights">Steaming lights (red, green, mast, stern)</label>
+    </div>
+    <!-- Radar, plotter, instruments, computer, fridge, heater, fans, AC, phone chargers, etc. -->
+  </fieldset>
+</form>
+<!-- Output sections starts here -->
+<h2>Results</h2>
+<p>Panel capacity required: <span id="panelout">400</span> W</p>
+
+<script src="solar.js"></script>
+
+<rgefooter>
+  <hr></hr>
+  <p>&#127279; Christopher Harris - 2021</p>
+</footer>
+
+</body>
+</html>
+
