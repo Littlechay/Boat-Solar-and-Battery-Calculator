@@ -7,6 +7,8 @@ var solarOutput = document.getElementById("solarP");
 var solarSlider = document.getElementById("mySolarPanel");
 var windOutput = document.getElementById("windG");
 var windSlider = document.getElementById("myWindGen");
+var consumersTot = document.getElementById("consumersTotal");
+var consumersUp = document.getElementById("consumersUpdate");
 
 
 output.innerHTML = slider.value; // Display the default slider value
@@ -33,3 +35,16 @@ solarSlider.oninput = function () {
 windSlider.oninput = function () {
   windOutput.innerHTML = this.value;
 }
+// add the total current consumed. 
+consumersUp.onclick = function () {
+  var arr = document.getElementsByName('consumer');
+  var tot = 0;
+  for (var i = 0; i < arr.length; i++) {
+    if (parseFloat(arr[i].value))
+
+      tot += parseFloat(arr[i].value);
+  }
+  tot = tot.toFixed(2);
+  consumersTot.innerHTML = tot;
+}
+

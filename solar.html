@@ -12,7 +12,7 @@
 
 <h1>Boat Battery and Solar Calculator</h1>
 <p>If you are trying to assess the DC electrical system on your boat this page can help you get into the 'ballpark' in terms of battery capacity required, charging capacity and such like. To use it you will fill in some basic details of the system that you have (or want). After that you need to complete the form labelled "Consumers". This will require quite a bit of research if you want to be totally accurate but the defaults should be close enough for an initial pass. Finally you fill in the details of the power generation systems that you have aboard.</p>
-<p>The "Results" section will provide an estimate of daily Ah consumption, an estimate of total battery capacity based on the battery chemistry selected and the amount of power generation required from each source listed, compared with what you now have.</p>
+<p>The "Results" section will provide an estimate of daily Ah consumption, an estimate of total battery capacity based on the battery chemistry selected and the amount of power generation required from each source listed.</p>
 <h2>Initial configuration</h2>
 <form name="getSystem" action="" method="get">
   <fieldset>
@@ -35,37 +35,169 @@
       <input type="range" min="100" max="600" value="200" id="myRange"></p>
   </fieldset>
   <fieldset>
-    <legend>Consumers</legend>
-    <div class="form-row">
-      <input name="consumers" type="number" id="lightsSmall" value="4">
-      <label for="lightsSmall">Lights - house (Small):</label>
-    <div>
-    <div class="form-row">
-      <input name="consumers" type="number" id="lightsLarge" value="2">
-      <label for="lightsLarge">Lights - house (large):</label>
-    <div>
+    <legend>Consumers - Underway">
+      <div class="form-row">
+        <div class="grid-item">active</div>
+        <div class="grid-item">Item</div>
+        <div class="grid-item">Draw (A)</div>
+        <div class="grid-item">Hours</div>
+        <div class="grid-item">Quantity</div>
+        <div class="grid-item">Total (A)</div>
+      </div>
 
-    <div class="form-row">
-      <input type="checkbox" name="consumers" id="anchorLight" checked="checked">
-      <label for="anchorLight">Anchor light</label>
-    </div>
-    <div class="form-row">
-      <input type="checkbox" name="consumers" id="deckLight"> 
-      <label for="deckLight">Deck light</label>
-    </div>
-    <div class="form-row">
-      <input type="checkbox" name="consumers" id="tricolour" checked="checked">
-      <label for="tricolour">Tricolour light</label>
-    </div>
-    <div class="form-row">
-      <input type="checkbox" name="consumers" id="gasAlarm" checked="checked">
-      <label for="gasAlarm">Gas Alarm</label>
-    </div>
-    <div class="form-row">
-      <input type="checkbox" name="consumers" id="steamingLights">
-      <label for="steamingLights">Steaming lights (red, green, mast, stern)</label>
-    </div>
+      <div class="form-row">
+        <div class="grid-item"><input type="checkbox"></div>
+        <div class="grid-item">light - tricolour</div>
+        <div class="grid-item"><input type="number" name="consumer" id="tricolourAmps" min="0" max="10" value="0.2" step="0.1"></div>
+        <div class="grid-item"><input type="number" name="consumerHours" id="tricolourHours" min="0" max="24" value="12" step="1"></div>
+        <div class="grid-item"><input type="number" name="consumerQty" id="tricolourQty" min="0" max="10" value="1" step="1"></div>
+        <div class="grid-item"><span id="tricolourTotalAmps"></span> A</div>
+      </div>
+      <div class="form-row">
+        <div class="grid-item"><input type="checkbox"></div>
+        <div class="grid-item">light - Nav lights</div>
+        <div class="grid-item"><input type="number" name="consumer" id="navLightsAmps" min="0" max="10" value="0.5" step="0.1"></div>
+        <div class="grid-item"><input type="number" name="consumerHours" id="navLightsHours" min="0" max="24" value="12" step="1"></div>
+        <div class="grid-item"><input type="number" name="consumerQty" id="navLightsQty" min="0" max="10" value="1" step="1"></div>
+        <div class="grid-item"><span id="tricolourTotalAmps"></span> A</div>
+      </div>
+      <div class="form-row">
+        <div class="grid-item"><input type="checkbox"></div>
+        <div class="grid-item">light - Anchor</div>
+        <div class="grid-item"><input type="number" name="consumer" id="AnchorLightAmps" min="0" max="10" value="0.1" step="0.1"></div>
+        <div class="grid-item"><input type="number" name="consumerHours" id="AnchorLightHours" min="0" max="24" value="12" step="1"></div>
+        <div class="grid-item"><input type="number" name="consumerQty" id="AnchorLightQty" min="0" max="10" value="1" step="1"></div>
+        <div class="grid-item"><span id="tricolourTotalAmps"></span> A</div>
+      </div>
+        <div class="form-row">
+        <div class="grid-item"><input type="checkbox"></div>
+        <div class="grid-item">Lights - house small</div>
+        <div class="grid-item"><input type="number" name="consumer" id="lightsSmallAmps" min="0" max="10" value="0.1" step="0.1"></div>
+        <div class="grid-item"><input type="number" name="consumerHours" id="lightsSmallHours" min="0" max="24" value="1" step="1"></div>
+        <div class="grid-item"><input type="number" name="consumerQty" id="lightsSmallQty" min="0" max="10" value="1" step="1"></div>
+        <div class="grid-item"><span id="tricolourTotalAmps"></span> A</div>
+      </div>
+        <div class="form-row">
+        <div class="grid-item"><input type="checkbox"></div>
+        <div class="grid-item">lights - house large</div>
+        <div class="grid-item"><input type="number" name="consumer" id="lightsLargeAmps" min="0" max="10" value="0.1" step="0.1"></div>
+        <div class="grid-item"><input type="number" name="consumerHours" id="lightsLargeHours" min="0" max="24" value="1" step="1"></div>
+        <div class="grid-item"><input type="number" name="consumerQty" id="lightsLargeQty" min="0" max="10" value="1" step="1"></div>
+        <div class="grid-item"><span id="tricolourTotalAmps"></span> A</div>
+      </div>
+
+      <div class="form-row">
+        <div class="grid-item"><input type="checkbox"></div>
+        <div class="grid-item">Bilge Pump</div>
+        <div class="grid-item"><input type="number" name="consumer" id="bilgePumpAmps" min="0" max="10" value="0.1" step="0.1"></div>
+        <div class="grid-item"><input type="number" name="consumerHours" id="bilgePumpHours" min="0" max="24" value="1" step="1"></div>
+        <div class="grid-item"><input type="number" name="consumerQty" id="bilgePumpQty" min="0" max="10" value="1" step="1"></div>
+        <div class="grid-item"><span id="tricolourTotalAmps"></span> A</div>
+      </div>
+      <div class="form-row">
+        <div class="grid-item"><input type="checkbox"></div>
+        <div class="grid-item">Gas detector</div>
+        <div class="grid-item"><input type="number" name="consumer" id="gasDetectorAmps" min="0" max="10" value="0.1" step="0.1"></div>
+        <div class="grid-item"><input type="number" name="consumerHours" id="gasDetectorHours" min="0" max="24" value="1" step="1"></div>
+        <div class="grid-item"><input type="number" name="consumerQty" id="gasDetectorQty" min="0" max="10" value="1" step="1"></div>
+        <div class="grid-item"><span id="tricolourTotalAmps"></span> A</div>
+      </div>
+      <div class="form-row">
+        <div class="grid-item"><input type="checkbox"></div>
+        <div class="grid-item">Gas solenoid</div>
+        <div class="grid-item"><input type="number" name="consumer" id="gasSolenoidAmps" min="0" max="10" value="0.1" step="0.1"></div>
+        <div class="grid-item"><input type="number" name="consumerHours" id="gasSolenoidHours" min="0" max="24" value="1" step="1"></div>
+        <div class="grid-item"><input type="number" name="consumerQty" id="gasSolenoidQty" min="0" max="10" value="1" step="1"></div>
+        <div class="grid-item"><span id="tricolourTotalAmps"></span> A</div>
+      </div>
+      <div class="form-row">
+        <div class="grid-item"><input type="checkbox"></div>
+        <div class="grid-item">Decklight</div>
+        <div class="grid-item"><input type="number" name="consumer" id="decklightAmps" min="0" max="10" value="0.1" step="0.1"></div>
+        <div class="grid-item"><input type="number" name="consumerHours" id="decklightHours" min="0" max="24" value="1" step="1"></div>
+        <div class="grid-item"><input type="number" name="consumerQty" id="decklightQty" min="0" max="10" value="1" step="1"></div>
+        <div class="grid-item"><span id="tricolourTotalAmps"></span> A</div>
+      </div>
+      <div class="form-row">
+        <div class="grid-item"><input type="checkbox"></div>
+        <div class="grid-item">Instruments</div>
+        <div class="grid-item"><input type="number" name="consumer" id="instrumentsAmps" min="0" max="10" value="0.1" step="0.1"></div>
+        <div class="grid-item"><input type="number" name="consumerHours" id="instrumentsHours" min="0" max="24" value="1" step="1"></div>
+        <div class="grid-item"><input type="number" name="consumerQty" id="instrumentsQty" min="0" max="10" value="1" step="1"></div>
+        <div class="grid-item"><span id="tricolourTotalAmps"></span> A</div>
+      </div>
+      <div class="form-row">
+        <div class="grid-item"><input type="checkbox"></div>
+        <div class="grid-item">Inverter</div>
+        <div class="grid-item"><input type="number" name="consumer" id="inverterAmps" min="0" max="10" value="12" step="0.1"></div>
+        <div class="grid-item"><input type="number" name="consumerHours" id="inverterHours" min="0" max="24" value="1" step="1"></div>
+        <div class="grid-item"><input type="number" name="consumerQty" id="inverterQty" min="0" max="10" value="1" step="1"></div>
+        <div class="grid-item"><span id="tricolourTotalAmps"></span> A</div>
+      </div>
+      <div class="form-row">
+        <div class="grid-item"><input type="checkbox"></div>
+        <div class="grid-item">Autopilot drive unit</div>
+        <div class="grid-item"><input type="number" name="consumer" id="autopilotAmps" min="0" max="10" value="0.1" step="0.1"></div>
+        <div class="grid-item"><input type="number" name="consumerHours" id="autopilotHours" min="0" max="24" value="1" step="1"></div>
+        <div class="grid-item"><input type="number" name="consumerQty" id="autopilotQty" min="0" max="10" value="1" step="1"></div>
+        <div class="grid-item"><span id="tricolourTotalAmps"></span> A</div>
+      </div>
+        <div class="form-row">
+        <div class="grid-item"><input type="checkbox"></div>
+        <div class="grid-item">Computer</div>
+        <div class="grid-item"><input type="number" name="consumer" id="computerAmps" min="0" max="10" value="1.0" step="0.1"></div>
+        <div class="grid-item"><input type="number" name="consumerHours" id="computerHours" min="0" max="24" value="24" step="1"></div>
+        <div class="grid-item"><input type="number" name="consumerQty" id="computerQty" min="0" max="10" value="1" step="1"></div>
+        <div class="grid-item"><span id="tricolourTotalAmps"></span> A</div>
+      </div>
+        <div class="form-row">
+        <div class="grid-item"><input type="checkbox"></div>
+        <div class="grid-item">Heater or aircon</div>
+        <div class="grid-item"><input type="number" name="consumer" id="heaterAmps" min="0" max="10" value="6" step="1"></div>
+        <div class="grid-item"><input type="number" name="consumerHours" id="heaterHours" min="0" max="24" value="1" step="1"></div>
+        <div class="grid-item"><input type="number" name="consumerQty" id="heaterQty" min="0" max="10" value="1" step="1"></div>
+        <div class="grid-item"><span id="tricolourTotalAmps"></span> A</div>
+      </div>
+        <div class="form-row">
+        <div class="grid-item"><input type="checkbox"></div>
+        <div class="grid-item">Radio - VHF</div>
+        <div class="grid-item"><input type="number" name="consumer" id="vhfAmps" min="0" max="10" value="0.2" step="0.1"></div>
+        <div class="grid-item"><input type="number" name="consumerHours" id="vhfHours" min="0" max="24" value="1" step="1"></div>
+        <div class="grid-item"><input type="number" name="consumerQty" id="vhfQty" min="0" max="10" value="1" step="1"></div>
+        <div class="grid-item"><span id="tricolourTotalAmps"></span> A</div>
+      </div>
+        <div class="form-row">
+        <div class="grid-item"><input type="checkbox"></div>
+        <div class="grid-item">Radio - SSB</div>
+        <div class="grid-item"><input type="number" name="consumer" id="ssbAmps" min="0" max="10" value="0.5" step="0.1"></div>
+        <div class="grid-item"><input type="number" name="consumerHours" id="ssbHours" min="0" max="24" value="1" step="1"></div>
+        <div class="grid-item"><input type="number" name="consumerQty" id="ssbQty" min="0" max="10" value="1" step="1"></div>
+        <div class="grid-item"><span id="tricolourTotalAmps"></span> A</div>
+      </div>
+        <div class="form-row">
+        <div class="grid-item"><input type="checkbox"></div>
+        <div class="grid-item">Stereo</div>
+        <div class="grid-item"><input type="number" name="consumer" id="stereoAmps" min="0" max="10" value="1" step="0.1"></div>
+        <div class="grid-item"><input type="number" name="consumerHours" id="stereoHours" min="0" max="24" value="1" step="1"></div>
+        <div class="grid-item"><input type="number" name="consumerQty" id="stereoQty" min="0" max="10" value="1" step="1"></div>
+        <div class="grid-item"><span id="tricolourTotalAmps"></span> A</div>
+      </div>
+
+      <div class="form-row-total">
+        <div class="grid-item"></div>
+        <div class="grid-item3">Total consumption over 24 hours:</div>
+        <div class="grid-item"><span id="consumersTotal">0.0</span> Ah</div>
+      </div>
+      <div class="form-row">
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"><input type="button" id="consumersUpdate" value="Update"></div>
+      </div>
     <!-- Radar, plotter, instruments, computer, fridge, heater, fans, AC, phone chargers, etc. -->
+    </div>
   </fieldset>
   <!-- Output sections starts here -->
   <fieldset>
@@ -75,6 +207,8 @@
     <p>Total - Battery capacity required <span id="capacityTotalBatt">0</span> Ah</p>
     <!-- Panel capacity using rule of thumb that will keep a battery operating in its sensible range i.e 50 to 80% for a FLA -->
     <p>Solar Panel capacity required: <span id="panelout"></span> W</p>
+    <!-- excess capacity. On good days there will be excess. This is a good thing as it increases the chances of actually topping off the battery. Excess green deficit red -->
+    <p>Charging capacity <span id="excessDeficit"></span> Wh</p>
   </fieldset>
 </form>
 <!-- Call script -->
@@ -82,7 +216,7 @@
 
 <footer>
   <hr></hr>
-  <p>&#127279; Christopher Harris - 2021</p>
+  <p>&#127279; Christopher Harris <a href="http://www.tweedsmarine.nz">www.tweedsmarine.nz</a> - 2021</p>
 </footer>
 
 </body>
