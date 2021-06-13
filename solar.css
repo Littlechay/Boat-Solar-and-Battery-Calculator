@@ -1,28 +1,81 @@
 /* Battery and solar calculator for boats */
+/* .input-num {
+  width: 6em;
+} */
 
-.consumers-grid {
+table {
+  /* min-width: 100vw; */
+  width: auto;
+  flex: 1;
   display: grid;
+  border-collapse: collapse;
+  grid-template-columns:
+    minmax(12em, 2fr)
+    minmax(2em, 1fr)
+    minmax(2em, 1fr)
+    minmax(2em, 1fr)
+    minmax(2em, 1fr)
+    minmax(2em, 1fr)
+    minmax(2em, 1fr)
+    minmax(2em, 1fr);
 }
 
-.form-row {
-  display: grid;
-  grid-template-columns: 3em 16em 6em 6em 6em 6em;
+thead,
+tbody,
+tr {
+  display: contents;
 }
 
-.form-row-total {
-  display: grid;
-  grid-template-columns: 3em 16em 6em 6em 6em 6em;
-  padding-top; 1em;
-  background-color: lightyellow;
-  border: 1px solid darkgray;
+th,
+td {
+  padding: 10px;
+  overflow: hidden;
+  test-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.grid-item {
-  padding: 0.5em;
+th {
+  position: sticky;
+  top: 0;
+  background: #6c7ae0;
+  text-align: left;
+  font-weight: normal;
+/*  font-size: 1.1rem; */
+  color: white;
+  position: relative;
 }
 
-.grid-item3 {
-  grid-column: 2 / 6;
-  padding: 0.5em;
-  text-align: right;
+th:last-child {
+  border: 0;
+}
+
+.resize-handle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: black;
+  opacity: 0;
+  width: 3px;
+  cursor: col-resize;
+}
+
+.resize-handle:hover,
+/* The following selector is needed so the handle is visible during resize even if the mouse isn't over the handle anymore */
+.header--being-resized .resize-handle {
+  opacity: 0.5;
+}
+
+th:hover .resize-handle {
+  opacity: 0.3;
+}
+
+td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #808080;
+}
+
+tr:nth-child(even) td {
+  background: #f8f6ff;
 }
